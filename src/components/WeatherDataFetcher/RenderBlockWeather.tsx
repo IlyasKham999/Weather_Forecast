@@ -2,7 +2,7 @@ import {Text, View, Image} from 'react-native';
 import React from 'react';
 import Styles from './styles';
 
-const RenderBlockWeather = ({date, maxtemp_c, mintemp_c, icon, text}) => {
+const RenderBlockWeather = ({date, maxtemp_c, mintemp_c, icon, text}: any) => {
   return (
     <View style={{borderBlockColor: '#000', borderWidth: 4, marginBottom: 10}}>
       <Text style={Styles.WeatherDataFetcher}>

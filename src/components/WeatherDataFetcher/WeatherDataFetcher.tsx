@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import axios from 'axios';
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import Styles from './styles';
 import RenderBlockWeather from './RenderBlockWeather';
+import {useDispatch, useSelector} from 'react-redux';
+import {setWeatherData, setWeatherDataThreeDay} from '../../redux/store';
 
 const WeatherDataFetcher = ({city}) => {
-  const [weatherData, setWeatherData] = useState(null);
-  const [weatherDataTreeDay, setWeatherDataTreeDay] = useState([]);
+  const dispatch = useDispatch();
+  const weatherData = useSelector(state => state.weatherData);
+  const weatherDataTreeDay = useSelector(state => state.weatherDataTreeDay);
 
   useEffect(() => {
     const getWeatherData = async () => {
@@ -22,8 +25,8 @@ const WeatherDataFetcher = ({city}) => {
           },
         };
         const response = await axios.request(options);
-        setWeatherData(prev => response.data);
-        setWeatherDataTreeDay(prev => response.data.forecast.forecastday);
+        dispatch(setWeatherData(response.data));
+        dispatch(setWeatherDataThreeDay(response.data.forecast.forecastday));
       } catch (error) {
         console.log(error);
       }

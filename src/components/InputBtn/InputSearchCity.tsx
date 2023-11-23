@@ -1,4 +1,4 @@
-import {View, Text, TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
 import React, {useState} from 'react';
 import Styles from './styles';
 
@@ -7,6 +7,7 @@ export default function InputSearchCity({setCity}) {
   const changeNewCitytHandler = () => {
     setCity(prev => newCity);
   };
+
   return (
     <View>
       <TextInput
